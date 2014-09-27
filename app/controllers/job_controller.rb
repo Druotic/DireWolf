@@ -17,15 +17,14 @@ class JobController < ApplicationController
   end
 
   def my_jobs
-    if current_user.is_employer?
+    if current_user.is_admin?
+      flash[:notice] = "You are the ADMIN. Please remember: With great power comes great responsibility :)"
+      @jobs = Job.all
+    elsif current_user.is_employer?
       @jobs = Job.where(:owner_id => current_user.id)
       puts @jobs
     elsif current_user.is_jobseeker?
       @jobs = current_user.jobs
-    else
-      puts"this should be called"
-      flash[:notice] = "You are the ADMIN. Please remember: With great power comes great responsibility :)"
-      @jobs = Job.all
     end
   end
 
