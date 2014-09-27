@@ -1,0 +1,40 @@
+<div class="create_header">
+  <h1>All Users</h1>
+  <%= link_to "Create User", new_admin_user_path if current_user.is_admin? %>
+</div>
+<div class="data_container">
+  <table id = "application_users_list" class="display data_table">
+    <thead>
+    <tr class="even">
+      <th>User Id</th>
+      <th>User Name</th>
+      <th>User Email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.name %></td>
+          <!--<td><%#= user.posts.count %></td>-->
+          <td><%= user.email %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#application_users_list').dataTable({
+            sPaginationType: "full_numbers",
+            "sDom": '<"top"if>rt<"bottom"lp><"clear">;', // add the 'f' in top tag to enable searching like <"top"f>
+            "bJQueryUI": true,
+            "aoColumns": [
+                null,
+                null,
+//                { "bSearchable": false },
+                null
+            ] } );
+    });
+</script>

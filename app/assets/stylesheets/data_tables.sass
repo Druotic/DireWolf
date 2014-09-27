@@ -1,0 +1,102 @@
+.create_header
+  padding-left: 100px
+
+.container
+  .dataTables_processing
+    position: fixed
+    top: 40%
+    left: 60%
+    width: 150px
+    height: 50px
+    float: left
+    margin-left: -125px
+    margin-top: -15px
+    padding: 10px
+    font-weight: bold
+    text-align: center
+    color: #999
+    font-size: 12px
+    background-color: #FFF
+    color: black
+    border-radius: 3px
+    border: 1px solid #c11428
+
+  .data_container .data_table_program_access
+    width: 800px !important
+    label
+      float: left
+  .data_container
+    padding-top: 20px
+    padding-bottom: 20px
+    margin-top: 20px
+    table.data_table
+      min-width: 550px
+      width: 800px
+      border-collapse: collapse
+      border-style: solid
+      border-width: 1px
+      border-color: #c9c9c9
+      clear: both
+      thead
+        tr
+          color: black
+          font-weight: 900
+          &.odd
+            background-color: white
+        th
+          min-width: 80px
+          padding: 0px
+          text-align: left
+          height: 28px
+          border: 1px solid #c9c9c9
+          padding-left: 8px
+          color: #454545
+          font-size: 12px
+          font-family: Helvetica
+          font-weight: bold
+          text-transform: uppercase
+      tbody
+        tr
+          &.even
+            background-color: #ebebeb
+        td
+          min-width: 50px
+          border: 1px solid #c9c9c9
+          height: 35px
+          max-height: 35px
+          min-height: 35px
+          padding-left: 8px
+          padding-right: 14px
+          max-width: 300px
+          word-wrap: break-word
+          font-family: Helvetica
+          font-size: 12px
+
+    .dataTables_length
+      float: left
+      .show_per_page
+        float: left
+        font-family: Helvetica
+      label
+        padding-top: 0
+    .dataTables_wrapper
+      width: 800px
+      margin: 0px auto
+      .bottom
+        display: inline-block
+        width: 100%
+        margin-top: 25px
+        .dataTables_paginate
+          display: inline-block
+          float: right
+          .ui-state-default
+            cursor: pointer
+            &.ui-state-disabled
+              pointer-events: none
+              cursor: auto
+          .ui-button
+            margin: 0 5px
+            border: none
+            background: #FFF
+    .button
+      padding: none

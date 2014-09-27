@@ -1,0 +1,41 @@
+<div class="create_header">
+  <h1>Published Articles</h1>
+  <%= link_to "Create new resume", new_post_path %>
+</div>
+<div class="data_container">
+  <table id = "posts_table" class="display data_table">
+    <thead>
+    <tr class="even">
+      <th>Owner Name</th>
+      <th>Article Title</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @posts.each do |post| %>
+        <tr>
+          <span id = "post_id"><%= post.id %></span>
+          <td><%= User.find(post.owner_id).name %></td>
+          <td><%= link_to post.title, post_path(:id => post.id), :id => "post_body_link" %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#posts_table').dataTable({
+            sPaginationType: "full_numbers",
+            "sDom": '<"top"if>rt<"bottom"lp><"clear">;', // add the 'f' in top tag to enable searching like <"top"f>
+            "bJQueryUI": true,
+            "aoColumns": [
+                null,
+                null
+        ]});
+        $("#post_body_link").on("click", function(e){
+            e.preventDefault();
+            var path = $(this).attr("href");
+            show_common_popup(path, '')
+        })
+    });
+</script>

@@ -1,0 +1,17 @@
+<div class = "job_title">
+  <%= @job.title %>
+</div>
+<div class="job_description">
+  <%= @job.description %>
+</div>
+<div class="job_salary">
+  <%= @job.salary %>
+</div>
+<div class="job_deadline">
+  <%= @job.deadline %>
+</div>
+<% if current_user.is_jobseeker? %>
+    <div class="job_apply">
+      <%= link_to "Apply", job_apply_path(:job_id=>@job.id), :confirm => "Your profile information will be used for this job application. Are you sure you wish to proceed?" %>
+    </div>
+<% end %>

@@ -1,0 +1,31 @@
+<%= form_for @job, :url => job_index_path do |f| %>
+    <div class="table_body">
+      <div class="table_list_item">
+        <%= f.label :title, :class => "table_column_item" %> <%= f.text_field :title, :class => "table_column_item", :size => 30, :placeholder => "*required" %>
+      </div>
+      <div class="table_list_item">
+        <%= f.label :description, :class => "table_column_item" %> <%= f.text_area :description, :class => "table_column_item", :rows=>10, :columns => 50, :size => 500, :placeholder => "*required" %>
+      </div>
+
+      <%= f.hidden_field :category_id, :id=>"category_cat_id" %>
+      <div class="table_list_item">
+        <%= f.label :category, :class => "table_column_item" %> <%= f.autocomplete_field :category, autocomplete_category_name_job_index_path,
+                                                                                         :update_elements => {:id => '#category_cat_id'},
+                                                                                         :class => "table_column_item", :size => 30,
+                                                                                         :placeholder => "*required" %>
+      </div>
+
+      <div class="table_list_item">
+        <%= f.label :salary, :class => "table_column_item" %> <%= f.text_field :salary, :class => "table_column_item", :size => 30 %>
+      </div>
+
+      <div class="table_list_item">
+        <%= f.label :deadline, :class => "table_column_item" %> <%= f.text_field :deadline, :class => "table_column_item", :size => 30, :placeholder => "*required" %>
+      </div>
+
+      <div class="table_list_item">
+        <span><%= f.submit "Create", :class => "button " %></span>
+        <span><%= link_to "Cancel", create_redirector_path, :class=> "button job_cancel" %></span>
+      </div>
+    </div>
+<% end %>

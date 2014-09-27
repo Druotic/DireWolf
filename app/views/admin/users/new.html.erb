@@ -1,0 +1,39 @@
+<%= form_for @user, :url => admin_users_path, :html=>{:multipart=>true, :novalidate => "novalidate"} do |f| %>
+    <div class="table_body">
+      <%= f.fields_for :role do |r| %>
+          <div class="table_list_item">
+            <%= f.label :name, :class => "table_column_item" %> <%= f.text_field :name, :class => "table_column_item", :placeholder => "*Required" %>
+          </div>
+          <div class="table_list_item">
+            <%= f.label :email, :class => "table_column_item" %> <%= f.email_field :email, :class => "table_column_item", :placeholder => "*Required" %>
+          </div>
+
+          <div class="table_list_item">
+            <%= f.label :phone, :class => "table_column_item" %> <%= f.phone_field :phone, :class => "table_column_item", :placeholder => "*Required" %>
+          </div>
+
+          <div class="table_list_item">
+            <%= f.label :password, :class => "table_column_item" %> <%= f.password_field :password, :class => "table_column_item", :placeholder => "*Required" %>
+          </div>
+
+          <div class="table_list_item">
+            <%= f.label :password_confirmation, :class => "table_column_item" %> <%= f.password_field :password_confirmation, :class => "table_column_item", :placeholder => "*Required" %>
+          </div>
+
+          <%= f.fields_for :role do |r| %>
+                <%= r.hidden_field :id, :id=>"role_id" %>
+              <div class="table_list_item">
+                <%= r.label :role, :class => "table_column_item" %> <%= r.autocomplete_field :role, autocomplete_role_name_admin_users_path,
+                                                                                                 :update_elements => {:id => '#role_id'},
+                                                                                                 :class => "table_column_item", :size => 30,
+                                                                                                 :placeholder => "*required" %>
+              </div>
+          <% end %>
+
+          <div class="table_list_item">
+            <span class ="table_column_item"><%= f.submit "Create", :class => "button " %></span>
+            <span><%= link_to "Cancel", admin_home_index_path, :class=> "button" %></span>
+          </div>
+      <% end %>
+    </div>
+<% end %>

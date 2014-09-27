@@ -1,0 +1,15 @@
+<%= form_for @post, :url => "#" do |f| %>
+    <div class="table_body">
+      <div class="table_list_item">
+        <%= f.label :title, :class => "table_column_item" %> <%= f.text_field :title, :class => "table_column_item", :size => 30, :placeholder => "*required" %>
+      </div>
+      <div class="table_list_item">
+        <%= f.label :body, :class => "table_column_item" %> <%= f.text_area :body, :class => "table_column_item", :rows=>10, :columns => 50, :size => 500, :placeholder => "*required" %>
+      </div>
+
+      <div class="table_list_item">
+        <span><%= f.submit "Create", :class => "button " %></span>
+        <span><%= link_to "Cancel", create_redirector_path, :class=> "button post_cancel" %></span>
+      </div>
+    </div>
+<% end %>

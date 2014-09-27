@@ -1,0 +1,40 @@
+<span>*Click on Jobs to view details</span>
+<div class="data_container">
+  <table id = "jobs_table" class="display data_table">
+    <thead>
+    <tr class="even">
+      <th>Owner Name</th>
+      <th>Job Title</th>
+      <th>Application Deadline</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @jobs.each do |job| %>
+        <tr>
+          <td><%= User.find(job.owner_id).name %></td>
+          <td><%= link_to job.title, job_path(:id => job.id), :class => "job_body_link" %></td>
+          <td class = "job_body_link"><%= job.deadline %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#jobs_table').dataTable({
+            sPaginationType: "full_numbers",
+            "sDom": '<"top"if>rt<"bottom"lp><"clear">;', // add the 'f' in top tag to enable searching like <"top"f>
+            "bJQueryUI": true,
+            "aoColumns": [
+                null,
+                null,
+                null
+            ]});
+        $(".job_body_link").on("click", function(e){
+            e.preventDefault();
+            var path = $(this).attr("href");
+            show_common_popup(path, '');
+        });
+    });
+</script>

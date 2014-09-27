@@ -1,0 +1,6 @@
+<div><%= link_to "View All Users", user_index_path %></div>
+<div><%= link_to "View Articles", "#" %></div>
+<% if current_user.can_publish? %>
+  <div><%= link_to "View All Drafted Posts", "#" %></div>
+<% end %>
+<div><%= link_to "Create new resume", "#" %></div>

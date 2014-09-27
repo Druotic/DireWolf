@@ -1,0 +1,8 @@
+<div class="create_header">
+  <h1>My Jobs</h1>
+  <% if can_post_new_job? %>
+      <%= link_to "Post New Job", new_job_path %>
+  <% end %>
+</div>
+
+<%= render :partial => "jobs_table.html.erb" %>
