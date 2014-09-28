@@ -3,7 +3,7 @@ Welcome to the sample application.
 Please follow the steps to setup the application:
 
 1. Setup a test directory: mkdir ~/test
-2. Clone the repository: git clone git@github.com:shanil-puri/blogger.git
+2. Clone the repository.
 3. Setup your database.yml as shown in 'database.yml.copy'
 4. Run the following commands:
     1. bundle install
