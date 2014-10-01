@@ -29,11 +29,6 @@ ActiveRecord::Schema.define(version: 20140926213410) do
     t.datetime "updated_at"
   end
 
-  create_table "jobs_applications", force: true do |t|
-    t.integer "job_id"
-    t.integer "user_id"
-  end
-
   create_table "jobs_tags", id: false, force: true do |t|
     t.integer "job_id"
     t.integer "tag_id"
@@ -41,7 +36,7 @@ ActiveRecord::Schema.define(version: 20140926213410) do
 
   create_table "jobs_users", id: false, force: true do |t|
     t.integer "user_id"
-    t.integer "job_id"
+    t.integer "jobs_id"
   end
 
   create_table "permissions", force: true do |t|
