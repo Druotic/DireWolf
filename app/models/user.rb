@@ -23,8 +23,8 @@ class User < ActiveRecord::Base
               :presence => true,
               :format =>     { with: VALID_PHONE_REGEX }
 
-  scope :get_all_employers, lambda{Role.find_by(:name => "Employer").users.pluck(:name)}
-  scope :get_all_jobseekers, lambda{Role.find_by(:name => "Jobseeker").users.pluck(:name)}
+  scope :get_all_employers, lambda{Role.find_by(:name => "Employer").users}
+  scope :get_all_jobseekers, lambda{Role.find_by(:name => "Jobseeker").users}
 
 
   def is_admin?

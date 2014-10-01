@@ -24,9 +24,7 @@ class Admin::UsersController < Admin::ApplicationController
   def update_new_user user, new_user_hash
     role_hash = new_user_hash["role"]
     new_user_hash = new_user_hash.slice!("role")
-    puts "##############################################################################################################\n"
     puts new_user_hash
-    puts "##############################################################################################################"
     user.update_attributes(new_user_hash)
 
 
