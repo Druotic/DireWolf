@@ -1,6 +1,6 @@
 class CreateJobs < ActiveRecord::Migration
   def up
-    create_table :job do |t|
+    create_table :jobs do |t|
       t.integer   :owner_id
       t.string    :title
       t.string    :description
