@@ -1,4 +1,6 @@
 Blogger::Application.routes.draw do
+  resources :widgets
+
   devise_for :users, :controllers => {:registrations => "registrations", :sessions=>"sessions"}
 
   root :to => "home#index"
