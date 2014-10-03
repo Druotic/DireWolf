@@ -14,6 +14,6 @@ class CreateJobs < ActiveRecord::Migration
   end
 
   def down
-    drop_table    :job
+    drop_table    :jobs
   end
 end
