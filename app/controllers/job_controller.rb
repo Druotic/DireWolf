@@ -30,11 +30,17 @@ class JobController < ApplicationController
 
   def create
     job = Job.new
+    category = Category.find_or_create_by(:name => job_params[:category])
 
     update_params = job_params
     update_params[:owner_id] = current_user.id
 
+    update_params[:category_id] = category.id
+    update_params.delete(:category)
+    update_params[:deadline] = format_date job_params[:deadline]
+
     update_new_job job, update_params
+
   end
 
   def apply
@@ -53,7 +59,19 @@ class JobController < ApplicationController
 
   private
 
+  # Checks format of date, returns nil is bad format.
+  # TODO: Using rescue seems smelly, improve? (Also see validation in model)
+  def format_date date
+    begin
+      DateTime.strptime(job_params[:deadline], '%m-%d-%Y')
+    rescue ArgumentError
+      nil
+    end
+  end
+
+
   def update_new_job job, new_job_hash
+    logger.debug "DEBUG: new_job_hash --> #{new_job_hash.to_yaml}"
     job.update_attributes(new_job_hash)
     if job.errors.blank?
       job.save!
@@ -68,6 +86,6 @@ class JobController < ApplicationController
   end
 
   def job_params
-    params.require(:job).permit(:title, :description, :category_id, :deadline, :salary)
+    params.require(:job).permit(:owner_id, :title, :description, :category_id, :deadline, :salary)
   end
 end
