@@ -2,7 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.1.6'
 gem 'execjs'
-gem 'therubyracer'
+# Not Required for windows
+# gem 'therubyracer'
 gem 'bootstrap-sass', "~> 2.3.2"
 gem 'activeresource'
 gem 'activerecord'
@@ -10,12 +11,15 @@ gem 'activerecord'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'mysql2'
 gem 'devise'
+gem "rspec-rails", :group => [:development, :test]
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
   gem 'sass-rails', '~> 4.0.3'
   gem 'coffee-rails'
+  #required for windows
+  gem 'tzinfo-data', platforms: [:x64_mingw,:mingw, :mswin]
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
