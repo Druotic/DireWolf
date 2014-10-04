@@ -4,6 +4,7 @@
     <thead>
     <tr class="even">
       <th>Owner Name</th>
+      <th>Job Category</th>
       <th>Job Title</th>
       <th>Application Deadline</th>
     </tr>
@@ -12,6 +13,7 @@
     <% @jobs.each do |job| %>
         <tr>
           <td><%= User.find(job.owner_id).name %></td>
+          <td><%= Category.find(job.category_id).id %></td>
           <td><%= link_to job.title, job_path(:id => job.id), :class => "job_body_link" %></td>
           <td class = "job_body_link"><%= job.deadline %></td>
         </tr>
@@ -27,6 +29,7 @@
             "sDom": '<"top"if>rt<"bottom"lp><"clear">;', // add the 'f' in top tag to enable searching like <"top"f>
             "bJQueryUI": true,
             "aoColumns": [
+                null,
                 null,
                 null,
                 null
