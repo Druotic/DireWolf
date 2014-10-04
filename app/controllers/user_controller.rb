@@ -3,6 +3,8 @@ class UserController < ApplicationController
   ##
   # Function to list all the users.
   # This is to be used by job seekers to list all the employers by name
+  # TODO: a) Is this used yet? b) This seems like it should have a parameter that defaults to all and we specify
+  # TODO: otherwise if we need only employers, only ___, and so on
   ##
   def index
     @users = User.get_all_employers
