@@ -1,14 +1,11 @@
 <h2>Update Job Information</h2>
 
-<%= form_for @job, :url=> job_path do |f| %>
+<%= form_for @job do |f| %>
     <p><%= f.label :title %><br />
         <%= f.text_field :title %></p>
 
     <p><%= f.label :description %><br />
         <%= f.text_field :description %></p>
-
-    <p><%= f.label :category %><br />
-        <%= f.text_field :category %></p>
 
     <p><%= f.label :salary %><br />
         <%= f.text_field :salary %></p>

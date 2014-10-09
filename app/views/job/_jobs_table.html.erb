@@ -21,7 +21,7 @@
           <td class = "job_body_link"><%= job.deadline %></td>
         <% if current_user.owns_job? job.owner_id %>
           <td> <%= link_to "Delete", job, :method => :delete, :confirm => "Are you sure?" %> &nbsp &nbsp
-              <!--<%= link_to "Edit", edit_job_path(job.id) %> -->
+              <%= link_to "Edit", edit_job_path(job) %>
           </td>
         <% end %>
         </tr>
