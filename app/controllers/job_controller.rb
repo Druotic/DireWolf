@@ -12,6 +12,15 @@ class JobController < ApplicationController
     @job = Job.new
   end
 
+  # def edit
+  #
+  # end
+  #
+  # def update
+  #   job = Job.where(:id => params[:id])
+  #   update_new_job job job_params
+  # end
+
   def show
     @job = Job.find(params[:id])
   end
@@ -63,8 +72,17 @@ class JobController < ApplicationController
     end
   end
 
+  # Delete job, only employers can do this
   def destroy
-
+    if current_user.is_employer?
+      @job = Job.find(params[:id])
+      @job.destroy
+      flash[:success] = "Job deleted"
+      redirect_to job_index_path
+    else
+      flash[:notice] = "You are not allowed to delete jobs. Only employers can do that!"
+      redirect_to job_index_path
+    end
   end
 
   private
