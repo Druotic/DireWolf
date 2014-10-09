@@ -1,9 +1,24 @@
 class RegistrationsController < Devise::RegistrationsController
 
   def create
-    @user = User.create(params["user"])
-    @user.roles << Role.find_by(:name => "Jobseeker")
-    sign_in @user
-    redirect_to root_path
+    puts registration_params
+    @user = User.create(registration_params)
+
+    if @user.errors.blank?
+      @user.roles << Role.find_by(:name => "Jobseeker")
+      sign_in @user
+      redirect_to root_path
+    else
+      @errors = @user.errors.full_messages
+      @errors.each do |e|
+        flash[:error] = e
+      end
+      redirect_to new_user_registration_path
+    end
+  end
+
+  private
+  def registration_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :phone)
   end
 end
