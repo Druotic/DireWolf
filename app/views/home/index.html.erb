@@ -1,6 +1,8 @@
 <div><%= link_to "View All Users", user_index_path %></div>
-<div><%= link_to "View Articles", "#" %></div>
-<% if current_user.can_publish? %>
-  <div><%= link_to "View All Drafted Posts", "#" %></div>
+<div><%= link_to "View All Jobs", job_index_path %></div>
+<% if current_user.is_employer? %>
+    <div><%= link_to "Create Job", new_job_path %></div>
 <% end %>
-<div><%= link_to "Create new resume", "#" %></div>
+<div><%= link_to "My Jobs", my_jobs_job_index_path %></div>
+<div><%= link_to "Suggested Jobs", suggested_jobs_job_index_path %></div>
+<div><%= link_to "Update Profile", edit_user_path(current_user.id) %></div>

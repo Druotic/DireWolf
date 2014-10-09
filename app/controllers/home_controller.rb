@@ -7,8 +7,6 @@ class HomeController < ApplicationController
 
     if current_user.is_admin?
       redirect_to admin_home_index_path
-    else
-      redirect_to job_index_path
     end
   end
 

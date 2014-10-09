@@ -28,6 +28,13 @@ class JobController < ApplicationController
     end
   end
 
+
+  def suggested_jobs
+    desc = current_user.jobs.first.description
+    key = "%#{desc}%"
+    @jobs = Job.all.where("description LIKE ?", key).not_applied_to(current_user.id)
+  end
+
   def create
     job = Job.new
     category = Category.find_or_create_by(:name => job_params[:category])

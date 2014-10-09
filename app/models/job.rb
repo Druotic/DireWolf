@@ -13,4 +13,13 @@ class Job < ActiveRecord::Base
       errors.add(:deadline, "is invalid")
     end
   end
+
+  def self.not_applied_to user_id
+    user = User.find(user_id)
+    jobs = Job.all - user.jobs
+
+    jobs.each do |j|
+
+    end
+  end
 end
