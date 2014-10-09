@@ -1,12 +1,12 @@
 class RegistrationsController < Devise::RegistrationsController
 
   def create
-    puts registration_params
     @user = User.create(registration_params)
 
     if @user.errors.blank?
       @user.roles << Role.find_by(:name => "Jobseeker")
       sign_in @user
+      welcome_mailer(@user)
       redirect_to root_path
     else
       @errors = @user.errors.full_messages
