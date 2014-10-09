@@ -4,5 +4,7 @@
     <div><%= link_to "Create Job", new_job_path %></div>
 <% end %>
 <div><%= link_to "My Jobs", my_jobs_job_index_path %></div>
-<div><%= link_to "Suggested Jobs", suggested_jobs_job_index_path %></div>
+<% if !current_user.is_employer? %>
+    <div><%= link_to "Suggested Jobs", suggested_jobs_job_index_path %></div>
+<% end %>
 <div><%= link_to "Update Profile", edit_user_path(current_user.id) %></div>
