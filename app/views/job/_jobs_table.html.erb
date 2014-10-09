@@ -7,6 +7,9 @@
       <th>Job Category</th>
       <th>Job Title</th>
       <th>Application Deadline</th>
+    <% if current_user.is_employer? %>
+      <th>Modify</th>
+    <% end %>
     </tr>
     </thead>
     <tbody>
@@ -16,6 +19,11 @@
           <td><%= Category.find(job.category_id).name %></td>
           <td><%= link_to job.title, job_path(:id => job.id), :class => "job_body_link" %></td>
           <td class = "job_body_link"><%= job.deadline %></td>
+        <% if current_user.owns_job? job.owner_id %>
+          <td> <%= link_to "Delete", job, :method => :delete, :confirm => "Are you sure?" %> &nbsp &nbsp
+              <%= link_to "Edit", edit_job_path(job) %>
+          </td>
+        <% end %>
         </tr>
     <% end %>
     </tbody>
@@ -29,6 +37,7 @@
             "sDom": '<"top"if>rt<"bottom"lp><"clear">;', // add the 'f' in top tag to enable searching like <"top"f>
             "bJQueryUI": true,
             "aoColumns": [
+                null,
                 null,
                 null,
                 null,

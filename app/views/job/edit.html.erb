@@ -1,0 +1,18 @@
+<h2>Update Job Information</h2>
+
+<%= form_for @job do |f| %>
+    <p><%= f.label :title %><br />
+        <%= f.text_field :title %></p>
+
+    <p><%= f.label :description %><br />
+        <%= f.text_field :description %></p>
+
+    <p><%= f.label :salary %><br />
+        <%= f.text_field :salary %></p>
+
+    <p><%= f.label :deadline %><br />
+        <%= f.text_field :deadline %></p>
+
+    <p><%= f.submit "Save" %></p>
+  <p><%= link_to "Cancel", root_path %></p>
+<% end %>

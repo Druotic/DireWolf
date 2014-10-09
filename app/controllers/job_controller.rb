@@ -12,6 +12,16 @@ class JobController < ApplicationController
     @job = Job.new
   end
 
+  def edit
+    @job = Job.find(params[:id])
+    # update_new_job job job_params
+  end
+
+  def update
+    job = Job.find(params[:id])
+    update_new_job job, get_update_params(job)
+  end
+
   def show
     @job = Job.find(params[:id])
   end
@@ -37,18 +47,22 @@ class JobController < ApplicationController
 
   def create
     job = Job.new
-    category = Category.find_or_create_by(:name => job_params[:category])
+    update_new_job job, get_update_params(job)
+  end
 
+  def get_update_params job
     update_params = job_params
+    category_id = job[:category_id]
+    if job.title.nil?
+      category_id = Category.find_or_create_by(:name => job_params[:category]).id
+      # Delete category name, just storing id (in job object)
+      update_params.delete(:category)
+    end
+
     update_params[:owner_id] = current_user.id
-
-    update_params[:category_id] = category.id
-    # Delete category name, just storing id (in job object)
-    update_params.delete(:category)
+    update_params[:category_id] = category_id
     update_params[:deadline] = format_date job_params[:deadline]
-
-    update_new_job job, update_params
-
+    update_params
   end
 
   def apply
@@ -63,8 +77,17 @@ class JobController < ApplicationController
     end
   end
 
+  # Delete job, only employers can do this
   def destroy
-
+    if current_user.is_employer?
+      @job = Job.find(params[:id])
+      @job.destroy
+      flash[:success] = "Job deleted"
+      redirect_to job_index_path
+    else
+      flash[:notice] = "You are not allowed to delete jobs. Only employers can do that!"
+      redirect_to job_index_path
+    end
   end
 
   private
@@ -84,6 +107,7 @@ class JobController < ApplicationController
     job.update_attributes(new_job_hash)
     if job.errors.blank?
       job.save!
+      flash[:success] = "Job saved!"
       flash.delete(:error)
       redirect_to job_index_path
     else
