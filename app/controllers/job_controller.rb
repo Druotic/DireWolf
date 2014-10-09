@@ -46,7 +46,9 @@ class JobController < ApplicationController
 
   def apply
     if current_user.is_jobseeker?
-      current_user.jobs << Job.find(params[:job_id])
+      job = Job.find(params[:job_id])
+      current_user.jobs << job
+      application_conformation(job)
       redirect_to job_index_path
     else
       flash[:notice] = "You are not allowed to apply for the job. Please create a new jobseeker account."
