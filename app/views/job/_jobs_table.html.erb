@@ -19,12 +19,6 @@
           <td><%= Category.find(job.category_id).name %></td>
           <td><%= link_to job.title, job_path(:id => job.id), :class => "job_body_link" %></td>
           <td class = "job_body_link"><%= job.deadline %></td>
-          <td>
-        <% if current_user.owns_job? job.owner_id %>
-              <%= link_to "Delete", job, :method => :delete, :confirm => "Are you sure?" %> &nbsp &nbsp
-              <%= link_to "Edit", edit_job_path(job) %>
-        <% end %>
-          </td>
         </tr>
     <% end %>
     </tbody>
@@ -41,13 +35,12 @@
                 null,
                 null,
                 null,
-                null,
                 null
             ]});
         $(".job_body_link").on("click", function(e){
             e.preventDefault();
             var path = $(this).attr("href");
-            show_common_popup(path, '');
+            show_common_popup(path, 'Job Application');
         });
     });
 </script>
