@@ -1,0 +1,15 @@
+
+<div>Title
+  <span class = "article_title">
+    <%= @resume.title %>
+  </span>
+</div>
+<div>Body
+  <span class = "article_title">
+    <%= @resume.body %>
+  </span>
+</div>
+
+<div>
+  <%= link_to "Edit Resume", edit_resume_path(@resume.id) %>
+</div>

@@ -1,0 +1,16 @@
+<%= form_for @resume, :url => resume_index_path do |f| %>
+    <div class="table_body">
+      <div class="table_list_item">
+        <%= f.label :title, :class => "table_column_item" %> <%= f.text_field :title, :class => "table_column_item", :size => 30, :placeholder => "*required" %>
+      </div>
+      <div class="table_list_item">
+        <%= f.label :body, :class => "table_column_item" %>
+        <%= f.text_area :body, :class => "table_column_item", :rows=>40, :columns => 5000, :size => 5000, :placeholder => "*required" %>
+      </div>
+
+      <div class="table_list_item">
+        <span><%= f.submit "Create", :class => "button " %></span>
+        <span><%= link_to "Cancel", root_path, :class=> "button post_cancel" %></span>
+      </div>
+    </div>
+<% end %>

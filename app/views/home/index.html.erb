@@ -6,5 +6,11 @@
 <div><%= link_to "My Jobs", my_jobs_job_index_path %></div>
 <% if !current_user.is_employer? %>
     <div><%= link_to "Suggested Jobs", suggested_jobs_job_index_path %></div>
+    <% resume = current_user.resume %>
+    <% if resume.nil? %>
+        <div><%= link_to "Create Resume", new_resume_path %></div>
+    <% else %>
+        <div><%= link_to "View Resume", resume_path(current_user.resume.id) %></div>
+    <% end %>
 <% end %>
 <div><%= link_to "Update Profile", edit_user_path(current_user.id) %></div>
