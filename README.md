@@ -1,6 +1,24 @@
-Welcome to the sample application.
+=====================================================================================
+Welcome to the DireWolf Job Portal
 
-Please follow the steps to setup the application:
+Deployed on VCL @ http://152.46.16.234/
+
+Details of Users created already;
+
+Admins: 1) shanilpuri@gmail.com => password:1234567x
+        2) admin1@test.com => password:1234567x
+        3) admin2@test.com => password:1234567x
+
+Employers: 1) employer1@test.com => password:1234567x
+           2) employer2@test.com => password:1234567x
+           3) employer3@test.com => password:1234567x
+
+Jobseekers: 1) jobseeker1@test.com => password:1234567x
+            2) jobseeker2@test.com => password:1234567x
+            3) jobseeker3@test.com => password:1234567x
+
+=====================================================================================
+Note: Please follow the below steps to setup the application in your local machine:
 
 1. Setup a test directory: mkdir ~/test
 2. Clone the repository.
@@ -15,8 +33,4 @@ Please follow the steps to setup the application:
 6. Start your sever using: 'rails server'
 
 Enjoy playing with the application. :)
-
-
-The First admin has been created. Please use
-1. LOGIN: shanil.puri@gmail.com
-2. Password: 1234567x
+=====================================================================================
