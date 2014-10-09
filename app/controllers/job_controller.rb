@@ -36,6 +36,7 @@ class JobController < ApplicationController
     update_params[:owner_id] = current_user.id
 
     update_params[:category_id] = category.id
+    # Delete category name, just storing id (in job object)
     update_params.delete(:category)
     update_params[:deadline] = format_date job_params[:deadline]
 
@@ -59,11 +60,10 @@ class JobController < ApplicationController
 
   private
 
-  # Checks format of date, returns nil is bad format.
-  # TODO: Using rescue seems smelly, improve? (Also see validation in model)
+  # Checks format of date, returns nil if bad format.
   def format_date date
     begin
-      DateTime.strptime(job_params[:deadline], '%m-%d-%Y')
+      DateTime.parse(job_params[:deadline])
     rescue ArgumentError
       nil
     end
@@ -75,13 +75,16 @@ class JobController < ApplicationController
     job.update_attributes(new_job_hash)
     if job.errors.blank?
       job.save!
+      flash.delete(:error)
       redirect_to job_index_path
     else
       @errors = job.errors.full_messages
       @errors.each do |e|
         flash[:error] = e
-      end
-      redirect_to new_job_path
+    end
+
+      @job = job
+      render :action => :new
     end
   end
 
