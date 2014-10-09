@@ -6,7 +6,7 @@ class RegistrationsController < Devise::RegistrationsController
     if @user.errors.blank?
       @user.roles << Role.find_by(:name => "Jobseeker")
       sign_in @user
-      welcome_mailer(@user)
+      UserMailer.welcome_mailer(@user).deliver
       redirect_to root_path
     else
       @errors = @user.errors.full_messages

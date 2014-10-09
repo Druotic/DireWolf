@@ -32,7 +32,6 @@ class JobController < ApplicationController
       @jobs = Job.all
     elsif current_user.is_employer?
       @jobs = Job.where(:owner_id => current_user.id)
-      puts @jobs
     elsif current_user.is_jobseeker?
       @jobs = current_user.jobs
     end
@@ -69,7 +68,7 @@ class JobController < ApplicationController
     if current_user.is_jobseeker?
       job = Job.find(params[:job_id])
       current_user.jobs << job
-      application_conformation(job)
+      JobMailer.application_conformation(job).deliver
       redirect_to job_index_path
     else
       flash[:notice] = "You are not allowed to apply for the job. Please create a new jobseeker account."
