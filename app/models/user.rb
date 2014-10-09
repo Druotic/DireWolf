@@ -51,8 +51,8 @@ class User < ActiveRecord::Base
     self.has_permission? "can_apply"
   end
 
-  def owns_job? job_id
-    self.is_employer? and self.id == job_id
+  def owns_job? job_owner_id
+    self.is_employer? and self.id == job_owner_id
   end
   ##
   # Function: Checks the permissions of the user against the requested permissions
