@@ -30,11 +30,18 @@ class JobController < ApplicationController
 
   def create
     job = Job.new
+    category = Category.find_or_create_by(:name => job_params[:category])
 
     update_params = job_params
     update_params[:owner_id] = current_user.id
 
+    update_params[:category_id] = category.id
+    # Delete category name, just storing id (in job object)
+    update_params.delete(:category)
+    update_params[:deadline] = format_date job_params[:deadline]
+
     update_new_job job, update_params
+
   end
 
   def apply
@@ -53,21 +60,35 @@ class JobController < ApplicationController
 
   private
 
+  # Checks format of date, returns nil if bad format.
+  def format_date date
+    begin
+      DateTime.parse(job_params[:deadline])
+    rescue ArgumentError
+      nil
+    end
+  end
+
+
   def update_new_job job, new_job_hash
+    logger.debug "DEBUG: new_job_hash --> #{new_job_hash.to_yaml}"
     job.update_attributes(new_job_hash)
     if job.errors.blank?
       job.save!
+      flash.delete(:error)
       redirect_to job_index_path
     else
       @errors = job.errors.full_messages
       @errors.each do |e|
         flash[:error] = e
-      end
-      redirect_to new_job_path
+    end
+
+      @job = job
+      render :action => :new
     end
   end
 
   def job_params
-    params.require(:job).permit(:title, :description, :category_id, :deadline, :salary)
+    params.require(:job).permit(:owner_id, :title, :description, :category, :deadline, :salary)
   end
 end
