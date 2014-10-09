@@ -6,6 +6,7 @@ Blogger::Application.routes.draw do
   root :to => "home#index"
   resources :job do
     get "/my_jobs" => :my_jobs, :on => :collection
+    get "/suggested_jobs" => :suggested_jobs, :on => :collection
     get :autocomplete_category_name, :on => :collection
     get "/apply" => :apply
   end
