@@ -2,6 +2,7 @@
 Welcome to the DireWolf Job Portal
 
 Deployed on VCL @ http://152.46.16.234/
+
 Deployed on EC2 @ http://ec2-54-186-80-176.us-west-2.compute.amazonaws.com:3000/
 
 VCL was giving us lots of problems.  If VCL doesn't work, try EC2.
