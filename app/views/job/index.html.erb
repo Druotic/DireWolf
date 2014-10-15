@@ -1,6 +1,6 @@
 <div class="create_header">
   <h1>All Posted Jobs</h1>
-  <% if can_post_new_job? %>
+  <% if current_user && can_post_new_job? %>
     <%= link_to "Post New Job", new_job_path %>
   <% end %>
 </div>

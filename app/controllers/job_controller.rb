@@ -1,6 +1,6 @@
 class JobController < ApplicationController
 
-  skip_before_filter :authenticate_job!, :only => [:index]
+  skip_before_filter :authenticate_user!, :only => [:index]
 
   autocomplete :category, :name, :full => true
 
